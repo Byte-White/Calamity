@@ -14,12 +14,24 @@ namespace clm
 
     class Window 
     {
+        int width,height;
     public:
         Window(int width, int height, const char* title);
         ~Window();
         int ShouldClose();
         void SwapBuffers();
         void PollEvents();
+
+        inline int GetWidth()
+        {
+            glfwGetWindowSize(window,&width,&height);
+            return width;
+        }
+        inline int GetHeight()
+        {
+            glfwGetWindowSize(window,&width,&height);
+            return height;
+        }
     private:
         GLFWwindow* window;
     };

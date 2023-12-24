@@ -5,13 +5,14 @@
     #include "Shader.h"
     #include "Window.h"
     #include "Texture.h"
+    #include "Framebuffer.h"
     #include <glm/glm.hpp>
     #include <vector>
 
 
 
     namespace clm{
-
+    // TODO: Make it useful
     class Calamity
     {
     Window& window;
@@ -28,7 +29,7 @@
         ~Calamity();
         void Render();
         void DrawRect(float x,float y,float w,float h);
-        void DrawTriangle();
+        void DrawTestTriangle();
 
         void UpdateData();
     };

@@ -2,21 +2,69 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <memory>
+#include <glm/glm.hpp>
+#include <vector>
 
 // TODO: Data Layout
 
 namespace clm {
     // Used as a template 
-    struct Vertex
+    /*struct Vertex
     {
     };
 
     struct CLMVertex: Vertex
     {
-        glm::vec3 position;
+        //glm::vec3 position;
         //glm::vec3 color;
         //glm::vec2 textureCoords;
+    };*/
+
+    struct VertexBufferElement
+    {
+        unsigned int type;
+        unsigned int count;
+        unsigned char normalized;
+
+        static unsigned int GetSizeOfType(unsigned int type)
+        {
+            switch (type)
+            {
+                case GL_FLOAT         : return sizeof(GLfloat);
+                case GL_UNSIGNED_INT  : return sizeof(GLuint);
+                case GL_UNSIGNED_BYTE : return sizeof(GLbyte);
+            }
+            return 0;
+        }
     };
+
+    class VertexBufferLayout
+    {
+        private:
+            unsigned int m_Stride, m_Count;
+            std::vector<VertexBufferElement> m_Elements;
+            
+        public:
+            VertexBufferLayout() :
+                m_Stride(0),m_Count(0) { }
+
+            void AddFloat(unsigned int count)        { Push(GL_FLOAT, count, GL_FALSE);        }
+            void AddUnsignedInt(unsigned int count)  { Push(GL_UNSIGNED_INT, count, GL_FALSE); }
+            void AddUnsignedByte(unsigned int count) { Push(GL_UNSIGNED_BYTE, count, GL_TRUE); }
+
+            inline const std::vector<VertexBufferElement> GetElements() const { return m_Elements; }
+            inline unsigned int GetStride() const { return m_Stride; }
+            inline unsigned int GetCount() const  { return m_Count; }
+        private:
+            void Push(unsigned int type, unsigned int count, unsigned char normalized)
+            {
+                struct VertexBufferElement vbe = {type, count, normalized};
+                m_Elements.push_back(vbe);
+                m_Stride += count * VertexBufferElement::GetSizeOfType(type);
+                m_Count += count;
+            }
+    };
+
 
 
 
@@ -63,6 +111,7 @@ namespace clm {
 
     class VertexArray {
     public:
+        VertexArray(float* vertices, GLsizei vertexCount, const VertexBufferLayout& layout);
         VertexArray(float* vertices, GLsizei vertexCount);
         ~VertexArray();
 

@@ -31,6 +31,7 @@ namespace clm
     //-----------------------------------------------------------------
 
     Window::Window(int width, int height, const char* title)
+    :width(width),height(height)
     {
         static bool gladisloaded = false;
         window = glfwCreateWindow(width, height, title, NULL, NULL);

@@ -10,6 +10,7 @@ add_library(
     src/Vertex.cpp
     src/Window.cpp
     src/Calamity.cpp
+    src/Texture.cpp
 )
 
 target_include_directories(

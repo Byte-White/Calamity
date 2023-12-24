@@ -53,7 +53,7 @@ namespace clm
         indicesData.push_back(3);
         UpdateData();
     }
-    void Calamity::DrawTriangle()
+    void Calamity::DrawTestTriangle()
     {    
         vertexData.push_back(0.0f);  // x1
         vertexData.push_back(-0.5f); // y1

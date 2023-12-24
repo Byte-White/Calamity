@@ -4,6 +4,32 @@
 namespace clm 
 {
 // Vertex Array
+
+    VertexArray::VertexArray(float* vertices, GLsizei vertexCount, const VertexBufferLayout& layout)
+    : vertexbuffer(std::make_shared<VertexBuffer>(vertices, vertexCount * layout.GetStride()))
+    {
+        glGenVertexArrays(1, &VAO);
+        glBindVertexArray(VAO);
+        
+        // Create and bind the Vertex Buffer Object (VBO)
+        
+        // Set the vertex attribute pointers
+        //glVertexAttribPointer(0, layout.GetCount(), GL_FLOAT, GL_FALSE, layout.GetStride(), (void*)0);
+        
+        const std::vector<VertexBufferElement>& elements = layout.GetElements();
+        unsigned int offset = 0;
+        for(int i = 0;i<elements.size();i++)
+        {
+            glEnableVertexAttribArray(i);
+            glVertexAttribPointer(i,elements[i].count,elements[i].type,elements[i].normalized,layout.GetStride(),(void*)(uintptr_t)(offset));
+            offset += elements[i].count * VertexBufferElement::GetSizeOfType(elements[i].type);
+        }
+
+        // Unbind the VAO
+        glBindVertexArray(0);
+    }
+    // Todo: change this structure
+    // default for calamity
     VertexArray::VertexArray(float* vertices, GLsizei vertexCount)
     : vertexbuffer(std::make_shared<VertexBuffer>(vertices, vertexCount * sizeof(float) * 3))
     {
