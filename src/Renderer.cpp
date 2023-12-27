@@ -1,4 +1,3 @@
-#pragma once
 #include "Calamity/Renderer.h"
 
 namespace clm

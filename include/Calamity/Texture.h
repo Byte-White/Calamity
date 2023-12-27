@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CALAMITY_TEXTURE_H
+#define CALAMITY_TEXTURE_H
 #include <glad/glad.h>
 #include "stb_image.h"
 #include <string>
@@ -24,3 +25,4 @@ namespace clm
             inline int GetHeight() const { return m_Height; }
     };
 } // namespace clm
+#endif // CALAMITY_TEXTURE_H

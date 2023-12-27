@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CALAMITY_VERTEX_H
+#define CALAMITY_VERTEX_H
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <memory>
@@ -131,3 +132,4 @@ namespace clm {
 
     
 } // namespace clm
+#endif // CALAMITY_VERTEX_H

@@ -1,4 +1,3 @@
-#pragma once
 #include "Calamity/Vertex.h"
 
 namespace clm 

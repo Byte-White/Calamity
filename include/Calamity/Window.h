@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CALAMITY_WINDOW_H
+#define CALAMITY_WINDOW_H
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
@@ -36,3 +37,4 @@ namespace clm
         GLFWwindow* window;
     };
 }
+#endif // CALAMITY_WINDOW_H

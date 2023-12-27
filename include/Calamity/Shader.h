@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CALAMITY_SHADER_H
+#define CALAMITY_SHADER_H
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <unordered_map>
@@ -33,3 +34,4 @@ namespace clm
         struct ShaderProgramSource ParseShader(const std::string& filepath);
     };
 }
+#endif // CALAMITY_SHADER_H

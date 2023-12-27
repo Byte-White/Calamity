@@ -1,4 +1,6 @@
-#pragma once
+#ifndef CALAMITY_RENDERER_H
+#define CALAMITY_RENDERER_H
+
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include "Vertex.h"
@@ -21,3 +23,4 @@ namespace clm
     
 
 } // namespace clm
+#endif // CALAMITY_RENDER_H

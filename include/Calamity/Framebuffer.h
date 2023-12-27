@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CALAMITY_FRAMEBUFFER_H
+#define CALAMITY_FRAMEBUFFER_H
 
 #include "Renderer.h"
 
@@ -29,3 +30,4 @@ namespace clm
         inline unsigned int GetColorAttachment() const	{ return m_ColorAttachment; }
     };
 } // namespace clm
+#endif // CALAMITY_FRAMEBUFFER_H
