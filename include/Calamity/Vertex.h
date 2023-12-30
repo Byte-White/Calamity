@@ -114,12 +114,12 @@ namespace clm {
 
     class VertexArray {
     public:
-        VertexArray(float* vertices, GLsizei vertexCount, const VertexBufferLayout& layout);
-        VertexArray(float* vertices, GLsizei vertexCount);
+        VertexArray(void* vertices, GLsizei vertexCount, const VertexBufferLayout& layout);
+        VertexArray(void* vertices, GLsizei vertexCount);
         VertexArray();
         ~VertexArray();
 
-        void LinkAttrib(float* vertices, GLsizei vertexCount, const VertexBufferLayout& layout);
+        void LinkAttrib(void* vertices, GLsizei vertexCount, const VertexBufferLayout& layout);
         void Bind() const;
         void Unbind() const;
         void UpdateVertexBufferData(const void* data, GLsizei size);
