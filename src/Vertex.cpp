@@ -38,7 +38,7 @@ namespace clm
     void VertexArray::LinkAttrib(void* vertices, GLsizei vertexCount, const VertexBufferLayout& layout)
     {
         glBindVertexArray(VAO);
-        vertexbuffer->UpdateData(vertices,vertexCount);
+        vertexbuffer->UpdateData(vertices,vertexCount* layout.GetStride());
         const std::vector<VertexBufferElement>& elements = layout.GetElements();
         unsigned int offset = 0;
         for(int i = 0;i<elements.size();i++)
