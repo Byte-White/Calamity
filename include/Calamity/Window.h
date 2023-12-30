@@ -15,7 +15,6 @@ namespace clm
 
     class Window 
     {
-        int width,height;
     public:
         Window(int width, int height, const char* title);
         ~Window();
@@ -33,7 +32,12 @@ namespace clm
             glfwGetWindowSize(window,&width,&height);
             return height;
         }
+        inline GLFWwindow* GetGLFWWindow()
+        {
+            return window;
+        }
     private:
+        int width,height;
         GLFWwindow* window;
     };
 }

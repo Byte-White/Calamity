@@ -1,3 +1,4 @@
+#pragma once
 #include "Calamity/Shader.h"
 #include <iostream>
 

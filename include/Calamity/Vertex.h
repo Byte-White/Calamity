@@ -72,6 +72,7 @@ namespace clm {
     class VertexBuffer {
     public:
         VertexBuffer(const void* data, GLsizei size);
+        VertexBuffer();
         ~VertexBuffer();
 
         void Bind();
@@ -90,6 +91,7 @@ namespace clm {
     class IndexBuffer {
     public:
         IndexBuffer(const GLuint* data, GLsizei count);
+        IndexBuffer();
         ~IndexBuffer();
 
         void Bind() const;
@@ -114,8 +116,10 @@ namespace clm {
     public:
         VertexArray(float* vertices, GLsizei vertexCount, const VertexBufferLayout& layout);
         VertexArray(float* vertices, GLsizei vertexCount);
+        VertexArray();
         ~VertexArray();
 
+        void LinkAttrib(float* vertices, GLsizei vertexCount, const VertexBufferLayout& layout);
         void Bind() const;
         void Unbind() const;
         void UpdateVertexBufferData(const void* data, GLsizei size);

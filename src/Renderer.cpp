@@ -1,3 +1,4 @@
+#pragma once
 #include "Calamity/Renderer.h"
 
 namespace clm
@@ -15,7 +16,7 @@ namespace clm
 
     void Renderer::Clear()
     {
-        glClear(GL_COLOR_BUFFER_BIT);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     }
     void Renderer::Draw(const VertexArray& vao, const IndexBuffer& ib, const Shader& shader,int count)
     {

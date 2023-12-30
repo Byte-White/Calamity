@@ -1,3 +1,4 @@
+#pragma once
 #include "Calamity/Vertex.h"
 
 namespace clm 
@@ -26,6 +27,26 @@ namespace clm
 
         // Unbind the VAO
         glBindVertexArray(0);
+    }
+
+    VertexArray::VertexArray()
+    : vertexbuffer(std::make_shared<VertexBuffer>())
+    {
+        glGenVertexArrays(1, &VAO);
+        glBindVertexArray(VAO);
+    }
+    void VertexArray::LinkAttrib(float* vertices, GLsizei vertexCount, const VertexBufferLayout& layout)
+    {
+        glBindVertexArray(VAO);
+        vertexbuffer->UpdateData(vertices,vertexCount);
+        const std::vector<VertexBufferElement>& elements = layout.GetElements();
+        unsigned int offset = 0;
+        for(int i = 0;i<elements.size();i++)
+        {
+            glEnableVertexAttribArray(i);
+            glVertexAttribPointer(i,elements[i].count,elements[i].type,elements[i].normalized,layout.GetStride(),(void*)(uintptr_t)(offset));
+            offset += elements[i].count * VertexBufferElement::GetSizeOfType(elements[i].type);
+        }
     }
     // Todo: change this structure
     // default for calamity
@@ -72,11 +93,17 @@ namespace clm
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
         glBufferData(GL_ARRAY_BUFFER, size, data, GL_DYNAMIC_DRAW);
     }
+    VertexBuffer::VertexBuffer() 
+    {
+        glGenBuffers(1, &VBO);
+    }
+    
 
     VertexBuffer::~VertexBuffer() 
     {
         glDeleteBuffers(1, &VBO);
     }
+
     void VertexBuffer::UpdateData(const void* data, GLsizei size) 
     {
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
@@ -98,6 +125,11 @@ namespace clm
         glGenBuffers(1, &IBO);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO); 
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, count * sizeof(GLuint), data, GL_DYNAMIC_DRAW);
+    }
+
+    IndexBuffer::IndexBuffer() 
+    {
+        glGenBuffers(1, &IBO);
     }
 
     IndexBuffer::~IndexBuffer() 

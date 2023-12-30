@@ -27,7 +27,48 @@ namespace clm
         // Provide the texture data
         if (m_LocalBuffer)
         {
-            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, m_Width, m_Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, m_LocalBuffer);
+            	// Check what type of color channels the texture has and load it accordingly
+                if (m_BPP == 4)
+                    glTexImage2D
+                    (
+                        GL_TEXTURE_2D,
+                        0,
+                        GL_RGBA,
+                        m_Width,
+                        m_Height,
+                        0,
+                        GL_RGBA,
+                        GL_UNSIGNED_BYTE,
+                        m_LocalBuffer
+                    );
+                else if (m_BPP == 3)
+                    glTexImage2D
+                    (
+                        GL_TEXTURE_2D,
+                        0,
+                        GL_RGBA,
+                        m_Width,
+                        m_Height,
+                        0,
+                        GL_RGB,
+                        GL_UNSIGNED_BYTE,
+                        m_LocalBuffer
+                    );
+                else if (m_BPP == 1)
+                    glTexImage2D
+                    (
+                        GL_TEXTURE_2D,
+                        0,
+                        GL_RGBA,
+                        m_Width,
+                        m_Height,
+                        0,
+                        GL_RED,
+                        GL_UNSIGNED_BYTE,
+                        m_LocalBuffer
+                    );
+                else
+                    throw std::invalid_argument("Automatic Texture type recognition failed");
             // Generate Mipmap for better texture quality
             glGenerateMipmap(GL_TEXTURE_2D);
         }

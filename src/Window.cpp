@@ -1,3 +1,4 @@
+#pragma once
 #include "Calamity/Window.h"
 #include <iostream>
 
