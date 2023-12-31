@@ -6,7 +6,8 @@ namespace clm
      
     Renderer::Renderer()
     {
-        
+        glEnable(GL_DEPTH_TEST);
+        glDepthFunc(GL_LESS);
     }
     
     Renderer::~Renderer()

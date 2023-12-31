@@ -13,7 +13,7 @@
 
 
 namespace clm{
-// TODO: Make it useful
+// Not recommended
 class Calamity
 {
 Window& window;
