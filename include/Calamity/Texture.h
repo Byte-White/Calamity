@@ -6,16 +6,24 @@
 
 namespace clm
 {
+    enum class TextureFormat{
+        None = 0,
+        Red,
+        RGB,
+        RGBA
+    };
     class Texture
     {
+        public:
         private:
             unsigned int m_RendererID;
             std::string m_FilePath;
-            unsigned char* m_LocalBuffer;
             int m_Width, m_Height, m_BPP;
-
         public:
             Texture(const std::string& path);
+            Texture(int width, int height,TextureFormat format, const void* data = nullptr);
+            void SetData(void* data);
+            void Resize(int width,int height);
             ~Texture();
             
             void Bind(unsigned int slot = 0) const;
