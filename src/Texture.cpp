@@ -5,7 +5,7 @@
 
 namespace clm
 {
-    Texture::Texture(const std::string& path)
+    Texture::Texture(const std::string& path,TextureFormat format)
         : m_RendererID(0), m_FilePath(path), m_Width(0), m_Height(0), m_BPP(0)
     {
         unsigned char* m_LocalBuffer = nullptr;
@@ -31,23 +31,45 @@ namespace clm
         {
             GLenum internalFormat, dataFormat;
             // Check what type of color channels the texture has and load it accordingly
-            switch (m_BPP)
+            if(format == TextureFormat::None)
             {
-            case 4:
-                internalFormat = GL_RGBA;
-                dataFormat = GL_RGBA;
-                break;
-            case 3:
-                internalFormat = GL_RGB;
-                dataFormat = GL_RGB;
-                break;
-            case 1:
-                internalFormat = GL_RED;
-                dataFormat = GL_RED;
-                break;
-            default:
-                throw std::invalid_argument("Automatic Texture type recognition failed");
+                switch (m_BPP)
+                {
+                case 4:
+                    internalFormat = GL_RGBA;
+                    dataFormat = GL_RGBA;
+                    break;
+                case 3:
+                    internalFormat = GL_RGB;
+                    dataFormat = GL_RGB;
+                    break;
+                case 1:
+                    internalFormat = GL_RED;
+                    dataFormat = GL_RED;
+                    break;
+                default:
+                    throw std::invalid_argument("Automatic Texture type recognition failed");
+                }
             }
+            else
+            {
+                switch (format)
+                {
+                case TextureFormat::RGBA:
+                    internalFormat = GL_RGBA;
+                    dataFormat = GL_RGBA;
+                    break;
+                case TextureFormat::RGB:
+                    internalFormat = GL_RGB;
+                    dataFormat = GL_RGB;
+                    break;
+                case TextureFormat::Red:
+                    internalFormat = GL_RED;
+                    dataFormat = GL_RED;
+                    break;
+                }
+            }
+            
 
             glTexImage2D(
                 GL_TEXTURE_2D,
