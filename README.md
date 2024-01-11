@@ -1,6 +1,6 @@
 # Calamity
 
-[![Build Status](https://github.com/Byte-White/LedED/workflows/build/badge.svg)](https://github.com/Byte-White/LedED/actions)
+[![Build Status](https://github.com/Byte-White/Calamity/workflows/build/badge.svg)](https://github.com/Byte-White/LedED/actions)
 
 an OpenGL abstraction with GLFW, GLAD, GLM and stbimage
 
