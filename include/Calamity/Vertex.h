@@ -115,7 +115,6 @@ namespace clm {
     class VertexArray {
     public:
         VertexArray(void* vertices, GLsizei vertexCount, const VertexBufferLayout& layout);
-        VertexArray(void* vertices, GLsizei vertexCount);
         VertexArray();
         ~VertexArray();
 

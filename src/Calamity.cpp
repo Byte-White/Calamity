@@ -3,80 +3,21 @@
 
 namespace clm
 {
-    Calamity::Calamity(Window& window,Shader& shader)
-    : window(window), shader(shader),va(vertexData.data(),vertexData.size()),ib(indicesData.data(),indicesData.size()),renderer()
+    int CalamityInit()
     {
-
-    }
-
-    Calamity::~Calamity()
-    {
-
-    }
-    void Calamity::Render()
-    {
-        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-        renderer.Clear();
-        renderer.Draw(va,ib,shader,indicesData.size());
-        window.SwapBuffers();
-        window.PollEvents();
+        // Initialize GLFW
+        if (!glfwInit()) {
+            return CALAMITY_FAILED;
+        }
+        // version
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4); // Request OpenGL 4.x
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3); // Request OpenGL x.3
+        glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); // Request a core profile
         
-        vertexData.clear();
-        indicesData.clear();
+        return CALAMITY_OK;
     }
-
-    void Calamity::DrawRect(float x,float y,float w,float h)
+    void CalamityDestroy()
     {
-        vertexData.push_back(x);
-        vertexData.push_back(y);
-        vertexData.push_back(0);
-
-        vertexData.push_back(x+w);
-        vertexData.push_back(y);
-        vertexData.push_back(0);
-        
-        vertexData.push_back(x);
-        vertexData.push_back(y-h);
-        vertexData.push_back(0);
-
-        vertexData.push_back(x+w);
-        vertexData.push_back(y-h);
-        vertexData.push_back(0);
-
-        //--------------------------
-        indicesData.push_back(0);
-        indicesData.push_back(1);
-        indicesData.push_back(2);
-
-        indicesData.push_back(1);
-        indicesData.push_back(2);
-        indicesData.push_back(3);
-        UpdateData();
-    }
-    void Calamity::DrawTestTriangle()
-    {    
-        vertexData.push_back(0.0f);  // x1
-        vertexData.push_back(-0.5f); // y1
-        vertexData.push_back(0.0f);
-
-        vertexData.push_back(0.5f);  // x2
-        vertexData.push_back(-0.5f); // y2
-        vertexData.push_back(0.0f);
-
-        vertexData.push_back(0.0f);  // x3
-        vertexData.push_back(0.5f);  // y3
-        vertexData.push_back(0.0f);
-
-        indicesData.push_back(0);
-        indicesData.push_back(1);
-        indicesData.push_back(2);
-
-        UpdateData();
-    }
-
-    void Calamity::UpdateData()
-    {
-        va.UpdateVertexBufferData(vertexData.data(),vertexData.size());
-        ib.UpdateData(indicesData.data(),indicesData.size());
+        glfwTerminate();
     }
 } // namespace clm

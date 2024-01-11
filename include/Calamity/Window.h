@@ -8,10 +8,6 @@
 
 namespace clm
 {
-    // returns CALAMITY_OK if initialized successfully
-    // returns CALAMITY_FAILED on failure
-    int CalamityInit();
-    void CalamityDestroy();
 
     class Window 
     {

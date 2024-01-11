@@ -12,28 +12,12 @@
 
 
 
-namespace clm{
-// Not recommended
-class Calamity
+namespace clm
 {
-Window& window;
-Shader& shader;
-VertexArray va;
-IndexBuffer ib;
-Renderer renderer;
-
-
-std::vector<float> vertexData;
-std::vector<GLuint> indicesData;
-public: 
-    Calamity(Window& window,Shader& shader);
-    ~Calamity();
-    void Render();
-    void DrawRect(float x,float y,float w,float h);
-    void DrawTestTriangle();
-
-    void UpdateData();
-};
+    // returns CALAMITY_OK if initialized successfully
+    // returns CALAMITY_FAILED on failure
+    int CalamityInit();
+    void CalamityDestroy();    
 
 }// namespace clm
 #endif // CALAMITY_H

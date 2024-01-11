@@ -1,4 +1,3 @@
-#pragma once
 #include "Calamity/Window.h"
 #include <iostream>
 
@@ -10,25 +9,7 @@ namespace clm
             std::cout << "Source: " << source << ", Type: " << type << ", ID: " << id << ", Severity: " << severity << std::endl;
     }
 
-    int CalamityInit()
-    {
-        // Initialize GLFW
-        if (!glfwInit()) {
-            return CALAMITY_FAILED;
-        }
-        // version
-        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4); // Request OpenGL 4.x
-        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3); // Request OpenGL x.3
-        glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); // Request a core profile
-        
-        return CALAMITY_OK;
-    }
-    void CalamityDestroy()
-    {
-        glfwTerminate();
-    }
 
-    //-----------------------------------------------------------------
 
     Window::Window(int width, int height, const char* title)
     :width(width),height(height)

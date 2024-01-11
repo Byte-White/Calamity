@@ -48,24 +48,7 @@ namespace clm
             offset += elements[i].count * VertexBufferElement::GetSizeOfType(elements[i].type);
         }
     }
-    // Todo: change this structure
-    // default for calamity
-    VertexArray::VertexArray(void* vertices, GLsizei vertexCount)
-    : vertexbuffer(std::make_shared<VertexBuffer>(vertices, vertexCount * sizeof(float) * 3))
-    {
-        glGenVertexArrays(1, &VAO);
-        glBindVertexArray(VAO);
-        
-        // Create and bind the Vertex Buffer Object (VBO)
-        
-        // Set the vertex attribute pointers
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-        glEnableVertexAttribArray(0);
-
-        // Unbind the VAO
-        glBindVertexArray(0);
-    }
-
+    
     VertexArray::~VertexArray() 
     {
         glDeleteVertexArrays(1, &VAO);

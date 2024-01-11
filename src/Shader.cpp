@@ -4,8 +4,16 @@
 
 namespace clm
 {
+    Shader::Shader()
+    {}
     Shader::Shader(const char* vertexShaderSource, const char* fragmentShaderSource)
     {    
+        CompileShaders(vertexShaderSource,fragmentShaderSource);
+    }
+
+    void Shader::CompileShaders(const char* vertexShaderSource,const char* fragmentShaderSource)
+    {
+        
         GLuint vertexShader,fragmentShader;
         // compile shaders
         vertexShader = glCreateShader(GL_VERTEX_SHADER);

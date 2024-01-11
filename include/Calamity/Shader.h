@@ -14,8 +14,10 @@ namespace clm
     {
     public:
         Shader(const char* vertexShaderSource, const char* fragmentShaderSource);
+        Shader();
         ~Shader();
 
+        void CompileShaders(const char* vertexShaderSource,const char* fragmentShaderSource);
         void Use() const;
         inline GLuint GetProgramID() const
         {
