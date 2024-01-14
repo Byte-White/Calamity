@@ -5,20 +5,30 @@
 
 namespace clm
 {
+    Texture::Texture()
+    {
+        glGenTextures(1, &m_RendererID);
+    }
+
     Texture::Texture(const std::string& path,TextureFormat format)
         : m_RendererID(0), m_FilePath(path), m_Width(0), m_Height(0), m_BPP(0)
     {
-        unsigned char* m_LocalBuffer = nullptr;
+        glGenTextures(1, &m_RendererID);
+        LoadImage(path);
+    }
 
+    
+    void Texture::LoadImage(const std::string& path,TextureFormat format)
+    {
+        glBindTexture(GL_TEXTURE_2D, m_RendererID);
         stbi_set_flip_vertically_on_load(1);
+        unsigned char* m_LocalBuffer = nullptr;
         m_LocalBuffer = stbi_load(path.c_str(), &m_Width, &m_Height, &m_BPP, 0);
         if (!m_LocalBuffer)
         {
             std::cout<<"Can't load texture '"<<path<<"' - "<<stbi_failure_reason();
         }
         
-        glGenTextures(1, &m_RendererID);
-        glBindTexture(GL_TEXTURE_2D, m_RendererID);
 
         // Set texture parameters for wrapping and filtering
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
@@ -105,7 +115,6 @@ namespace clm
         if (m_LocalBuffer)
             stbi_image_free(m_LocalBuffer);
     }
-
 Texture::Texture(int width, int height, TextureFormat format, const void *data)
         : m_RendererID(0), m_Width(width), m_Height(height), m_BPP(0)
     {
@@ -119,14 +128,17 @@ Texture::Texture(int width, int height, TextureFormat format, const void *data)
         case TextureFormat::Red:
             internalFormat = GL_RED;
             dataFormat = GL_RED;
+            m_BPP = 1;
             break;
         case TextureFormat::RGB:
             internalFormat = GL_RGB;
             dataFormat = GL_RGB;
+            m_BPP = 3;
             break;
         case TextureFormat::RGBA:
             internalFormat = GL_RGBA;
             dataFormat = GL_RGBA;
+            m_BPP = 4;
             break;
         default:
             throw std::invalid_argument("Invalid TextureFormat");

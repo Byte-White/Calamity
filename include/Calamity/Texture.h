@@ -20,10 +20,12 @@ namespace clm
             std::string m_FilePath;
             int m_Width, m_Height, m_BPP;
         public:
+            Texture();
             Texture(const std::string& path,TextureFormat format = TextureFormat::None);
             Texture(int width, int height,TextureFormat format, const void* data = nullptr);
             void SetData(void* data);
             void Resize(int width,int height);
+            void LoadImage(const std::string& path,TextureFormat format = TextureFormat::None);
             ~Texture();
             
             void Bind(unsigned int slot = 0) const;
