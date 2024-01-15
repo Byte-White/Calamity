@@ -3,7 +3,7 @@
 namespace clm
 {
     
-    Framebuffer::Framebuffer(const FrameBufferSpecification& spec)
+    Framebuffer::Framebuffer(const FramebufferSpecification& spec)
         :m_Specification(spec)
     {
         Resize();
@@ -18,7 +18,7 @@ namespace clm
     {
         if (m_Framebuffer)
         {
-            glDeleteBuffers(1, &m_Framebuffer);
+            glDeleteFramebuffers(1, &m_Framebuffer);
         }
         glCreateFramebuffers(1, &m_Framebuffer);
         glBindFramebuffer(GL_FRAMEBUFFER, m_Framebuffer);
@@ -50,5 +50,14 @@ namespace clm
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
     }
 
-    
+
+    void Framebuffer::BindColorAttachment(unsigned int slot)
+    {
+        glActiveTexture(GL_TEXTURE0 + slot);
+        glBindTexture(GL_TEXTURE_2D, m_ColorAttachment);
+    }
+    void Framebuffer::UnbindColorAttachment()
+    {
+        glBindTexture(GL_TEXTURE_2D, 0);
+    }
 } // namespace clm

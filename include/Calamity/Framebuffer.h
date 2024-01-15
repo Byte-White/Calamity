@@ -6,7 +6,7 @@
 namespace clm
 {
 
-    struct FrameBufferSpecification
+    struct FramebufferSpecification
     {
         unsigned int Width, Height;
         unsigned int Samples = 1;
@@ -17,9 +17,9 @@ namespace clm
     {
     private:
         unsigned int m_Framebuffer, m_ColorAttachment, m_DepthAttachment;
-        FrameBufferSpecification m_Specification;
+        FramebufferSpecification m_Specification;
     public:
-        Framebuffer(const FrameBufferSpecification& spec);
+        Framebuffer(const FramebufferSpecification& spec);
         ~Framebuffer();
 
         void Resize();
@@ -28,6 +28,8 @@ namespace clm
         void Unbind() const;
 
         inline unsigned int GetColorAttachment() const	{ return m_ColorAttachment; }
+        void BindColorAttachment(unsigned int slot = 0);
+        static void UnbindColorAttachment();
     };
 } // namespace clm
 #endif // CALAMITY_FRAMEBUFFER_H

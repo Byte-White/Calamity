@@ -11,7 +11,7 @@ namespace clm
         }
         // version
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4); // Request OpenGL 4.x
-        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3); // Request OpenGL x.3
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5); // Request OpenGL x.5
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); // Request a core profile
         
         return CALAMITY_OK;
