@@ -24,8 +24,8 @@ namespace clm
 
         void Resize();
 
-        void Bind() const;
-        void Unbind() const;
+        void Bind();
+        static void Unbind();
 
         inline unsigned int GetColorAttachment() const	{ return m_ColorAttachment; }
         void BindColorAttachment(unsigned int slot = 0);

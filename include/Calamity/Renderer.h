@@ -15,6 +15,7 @@ namespace clm
         ~Renderer();
 
         void Clear();
+        void Draw(const VertexArray& vao, const IndexBuffer& ib, const Shader& shader);
         void Draw(const VertexArray& vao, const IndexBuffer& ib, const Shader& shader,int count);
     private:
     };

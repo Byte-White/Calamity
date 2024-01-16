@@ -20,4 +20,39 @@ namespace clm
     {
         glfwTerminate();
     }
+
+
+    //---------- Input ----------
+	Window* Input::m_window = nullptr;
+
+	bool Input::IsKeyPressed(const KeyCode key)
+	{
+		auto state = glfwGetKey(Input::GetWindow()->GetGLFWWindow(), static_cast<int32_t>(key));
+		return state == GLFW_PRESS || state == GLFW_REPEAT;
+	}
+
+	bool Input::IsMouseButtonPressed(const MouseCode button)
+	{
+		auto state = glfwGetMouseButton(Input::GetWindow()->GetGLFWWindow(), static_cast<int32_t>(button));
+		return state == GLFW_PRESS;
+	}
+
+	glm::vec2 Input::GetMousePosition()
+	{
+		double xpos, ypos;
+		glfwGetCursorPos(Input::GetWindow()->GetGLFWWindow(), &xpos, &ypos);
+
+		return glm::vec2{ (float)xpos, (float)ypos };
+	}
+
+	float Input::GetMouseX()
+	{
+		return GetMousePosition().x;
+	}
+
+	float Input::GetMouseY()
+	{
+		return GetMousePosition().y;
+	}
+
 } // namespace clm

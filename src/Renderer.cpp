@@ -19,6 +19,19 @@ namespace clm
     {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     }
+
+    void Renderer::Draw(const VertexArray& vao, const IndexBuffer& ib, const Shader& shader)
+    {
+        // Use the shader program, draw triangles
+        shader.Use();
+        vao.Bind();
+        ib.Bind();
+        glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, nullptr);
+        ib.Unbind();
+        vao.Unbind();
+
+    }
+
     void Renderer::Draw(const VertexArray& vao, const IndexBuffer& ib, const Shader& shader,int count)
     {
         // Use the shader program, draw triangles

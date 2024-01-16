@@ -76,7 +76,7 @@ namespace clm {
         ~VertexBuffer();
 
         void Bind();
-        void Unbind();
+        static void Unbind();
         void UpdateData(const void* data, GLsizei size);
 
         inline GLuint GetVBO() const
@@ -95,7 +95,7 @@ namespace clm {
         ~IndexBuffer();
 
         void Bind() const;
-        void Unbind() const;
+        static void Unbind();
         void UpdateData(const void* data, GLsizei count);
 
         inline GLsizei GetCount() const 
@@ -120,7 +120,7 @@ namespace clm {
 
         void LinkAttrib(void* vertices, GLsizei vertexCount, const VertexBufferLayout& layout);
         void Bind() const;
-        void Unbind() const;
+        static void Unbind();
         void UpdateVertexBufferData(const void* data, GLsizei size);
 
         inline GLuint GetVAO() const

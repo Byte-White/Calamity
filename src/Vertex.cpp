@@ -65,7 +65,7 @@ namespace clm
         glBindVertexArray(VAO);
     }
 
-    void VertexArray::Unbind() const
+    void VertexArray::Unbind()
     {
         glBindVertexArray(0);
     }
@@ -124,7 +124,7 @@ namespace clm
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
     }
 
-    void IndexBuffer::Unbind() const{
+    void IndexBuffer::Unbind() {
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
     }
 

@@ -40,12 +40,12 @@ namespace clm
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
     }
 
-    void Framebuffer::Bind() const
+    void Framebuffer::Bind()
     {
         glBindFramebuffer(GL_FRAMEBUFFER, m_Framebuffer);
     }
 
-    void Framebuffer::Unbind() const
+    void Framebuffer::Unbind()
     {
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
     }

@@ -285,7 +285,7 @@ Texture::Texture(int width, int height, TextureFormat format, const void *data)
         glBindTexture(GL_TEXTURE_2D, m_RendererID);
     }
 
-    void Texture::Unbind() const
+    void Texture::Unbind()
     {
         glBindTexture(GL_TEXTURE_2D, 0);
     }
