@@ -80,25 +80,30 @@ namespace clm
 
     void Shader::SetUniform1i(const std::string& name, int value)
     {
+        Use();
         glUniform1i(GetUniformLocation(name), value);
     }
 
     void Shader::SetUniform1f(const std::string& name, float value)
     {
+        Use();
         glUniform1f(GetUniformLocation(name), value);
     }
 
     void Shader::SetUniform4f(const std::string& name, float f0, float f1, float f2, float f3)
     {
+        Use();
         glUniform4f(GetUniformLocation(name), f0, f1, f2, f3);
     }
     void Shader::SetUniform4f(const std::string& name, const glm::vec4& value)
     {
+        Use();
         glUniform4f(GetUniformLocation(name), value.r, value.g, value.b, value.a);
     }
 
     void Shader::SetUniformMat4f(const std::string& name, const glm::mat4& matrix)
     {
+        Use();
         glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, &matrix[0][0]);
     }
 }
